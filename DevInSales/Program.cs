@@ -1,8 +1,5 @@
 using DevInSales.Context;
-
-
-
-using DevInSales.Seeds;
+using DevInSales.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -26,7 +23,9 @@ builder.Services.AddSwaggerGen(opt =>
 builder.Services.AddDbContext<SqlContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("ServerConnection")));
 builder.Services.AddControllersWithViews().AddNewtonsoftJson();
 
-var key = Encoding.ASCII.GetBytes("T7kCvXPeppDMWuPjPmQHY5mKaUNuaMV4Y78YWE3s38HASErwbMjdby7JX5qRfJsV");
+ConfigurationHelper.Initialize(builder.Configuration);
+var secret = builder.Configuration.GetValue<string>("TokenConfigurations:SecretJwtKey");
+var key = Encoding.ASCII.GetBytes(secret);
 
 builder.Services.AddAuthentication(options =>
 {

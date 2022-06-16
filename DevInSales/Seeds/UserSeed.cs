@@ -36,6 +36,30 @@ namespace DevInSales.Seeds
             Email = "tomas.paulo.aragao@hotmail.com",
             Password = "$tpa1996",
             ProfileId = 1
+        }, new User()
+        {
+            Id = 5,
+            Name = "Cliente Plebeu",
+            BirthDate = new DateTime(1994, 8, 11),
+            Email = "cliente_plebeu@gmail.com",
+            Password = "plebeu123",
+            ProfileId = 1
+        }, new User()
+        {
+            Id = 6,
+            Name = "Gerente Nobre",
+            BirthDate = new DateTime(1994, 8, 11),
+            Email = "gerente_nobre@gmail.com",
+            Password = "nobre123",
+            ProfileId = 2
+        }, new User()
+        {
+            Id = 7,
+            Name = "Admin Gigachad",
+            BirthDate = new DateTime(1994, 8, 11),
+            Email = "admin_gigachad@gmail.com",
+            Password = "gigachad123",
+            ProfileId = 3
         }
         };
     }
