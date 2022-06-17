@@ -10,7 +10,7 @@ using DevInSales.Context;
 using DevInSales.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using DevInSales.DTOs;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace DevInSales.Controllers
 {
@@ -27,6 +27,7 @@ namespace DevInSales.Controllers
 
         // GET: api/Addresse
         [HttpGet]
+        [Authorize(Roles = "Usuario, Gerente, Administrador")]
         public async Task<ActionResult<IEnumerable<Address>>> GetAddress()
         {
             return await _context.Address.ToListAsync();
@@ -35,9 +36,7 @@ namespace DevInSales.Controllers
 
         // GET: api/Addresse/5
         [HttpGet("{id}")]
-
-
-
+        [Authorize(Roles = "Usuario, Gerente, Administrador")]
         public async Task<ActionResult<Address>> GetAddress(int id)
         {
             var address = await _context.Address.FindAsync(id);
@@ -53,6 +52,7 @@ namespace DevInSales.Controllers
         [HttpGet("address")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [Authorize(Roles = "Usuario, Gerente, Administrador")]
         //public async Task<ActionResult<IEnumerable<AddressDTO>>> GetAddress(string CEP, string Street, CityStateDTO CityStateDTO)
         //{
 
@@ -94,6 +94,7 @@ namespace DevInSales.Controllers
         // PUT: api/Addresse/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "Gerente, Administrador")]
         public async Task<IActionResult> PutAddress(int id, Address address)
         {
             if (id != address.Id)
@@ -125,6 +126,7 @@ namespace DevInSales.Controllers
         // POST: api/Addresse
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "Gerente, Administrador")]
         public async Task<ActionResult<Address>> PostAddress(Address address)
         {
             _context.Address.Add(address);
@@ -139,6 +141,7 @@ namespace DevInSales.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int id)
         {
             try
@@ -182,6 +185,7 @@ namespace DevInSales.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpPatch("{id}")]
+        [Authorize(Roles = "Gerente, Administrador")]
         public async Task<ActionResult> Patch(int id, [FromBody] JsonPatchDocument<Address> patchAddress)
         {
             try
