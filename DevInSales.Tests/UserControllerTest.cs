@@ -48,7 +48,7 @@ namespace DevInSales.Tests
 
             var content = expected.Value as List<UserResponseDTO>;
 
-            Assert.That(expected.StatusCode.ToString(), Is.EqualTo("200"));
+            Assert.AreEqual(expected.StatusCode.ToString(), "200");
             Assert.That(content[0].Name.Contains(user.Result.Name));
         }
 
@@ -68,7 +68,7 @@ namespace DevInSales.Tests
             var content = expected.Value as List<UserResponseDTO>;
 
             Assert.That(content[0].BirthDate >= date);
-            Assert.That(expected.StatusCode.ToString(), Is.EqualTo("200"));
+            Assert.AreEqual(expected.StatusCode.ToString(), "200");
         }
 
         [Test]
@@ -86,7 +86,7 @@ namespace DevInSales.Tests
 
             var content = expected.Value as List<UserResponseDTO>;
 
-            Assert.That(expected.StatusCode.ToString(), Is.EqualTo("200"));
+            Assert.AreEqual(expected.StatusCode.ToString(), "200");
             Assert.That(content[0].BirthDate <= date);
         }
 
@@ -101,8 +101,8 @@ namespace DevInSales.Tests
 
             var expected = (result.Result as ObjectResult);
 
-            Assert.That(expected.Value.ToString(), Is.EqualTo("Nenhum usuário foi encontrado."));
-            Assert.That(expected.StatusCode.ToString(), Is.EqualTo("404"));
+            Assert.AreEqual(expected.Value.ToString(), "Nenhum usuário foi encontrado.");
+            Assert.AreEqual(expected.StatusCode.ToString(), "404");
         }
 
 
@@ -126,8 +126,8 @@ namespace DevInSales.Tests
 
             var expected = (result.Result as ObjectResult);
 
-            Assert.That(expected.StatusCode.ToString(), Is.EqualTo("201"));
-            Assert.That(context.User.Count() == userCount + 1);
+            Assert.AreEqual(expected.StatusCode.ToString(), "201");
+            Assert.AreEqual(context.User.Count(), (userCount + 1));
 
         }
 
@@ -149,8 +149,8 @@ namespace DevInSales.Tests
 
             var expected = (result.Result as ObjectResult);
 
-            Assert.That(expected.Value.ToString(), Is.EqualTo("O usuário deve ser maior de 18 anos."));
-            Assert.That(expected.StatusCode.ToString(), Is.EqualTo("400"));
+            Assert.AreEqual(expected.Value.ToString(), "O usuário deve ser maior de 18 anos.");
+            Assert.AreEqual(expected.StatusCode.ToString(), "400");
         }
 
         [Test]
@@ -171,8 +171,8 @@ namespace DevInSales.Tests
 
             var expected = (result.Result as ObjectResult);
 
-            Assert.That(expected.Value.ToString(), Is.EqualTo("Data inválida."));
-            Assert.That(expected.StatusCode.ToString(), Is.EqualTo("400"));
+            Assert.AreEqual(expected.Value.ToString(), "Data inválida.");
+            Assert.AreEqual(expected.StatusCode.ToString(), "400");
         }
 
         [Test]
@@ -193,8 +193,8 @@ namespace DevInSales.Tests
 
             var expected = (result.Result as ObjectResult);
 
-            Assert.That(expected.Value.ToString(), Is.EqualTo("Senha inválida. Deve-se ter pelo menos um caractere diferente dos demais."));
-            Assert.That(expected.StatusCode.ToString(), Is.EqualTo("400"));
+            Assert.AreEqual(expected.Value.ToString(), "Senha inválida. Deve-se ter pelo menos um caractere diferente dos demais.");
+            Assert.AreEqual(expected.StatusCode.ToString(), "400");
         }
 
         [Test]
@@ -215,8 +215,8 @@ namespace DevInSales.Tests
 
             var expected = (result.Result as ObjectResult);
 
-            Assert.That(expected.Value.ToString(), Is.EqualTo("O email informado já existe."));
-            Assert.That(expected.StatusCode.ToString(), Is.EqualTo("400"));
+            Assert.AreEqual(expected.Value.ToString(), "O email informado já existe.");
+            Assert.AreEqual(expected.StatusCode.ToString(), "400");
         }
 
         [Test]
@@ -237,8 +237,8 @@ namespace DevInSales.Tests
 
             var expected = (result.Result as ObjectResult);
 
-            Assert.That(expected.Value.ToString(), Is.EqualTo("O perfil informado não foi encontrado."));
-            Assert.That(expected.StatusCode.ToString(), Is.EqualTo("404"));
+            Assert.AreEqual(expected.Value.ToString(), "O perfil informado não foi encontrado.");
+            Assert.AreEqual(expected.StatusCode.ToString(), "404");
         }
 
         [Test]
@@ -253,9 +253,9 @@ namespace DevInSales.Tests
 
             var expected = (result as ObjectResult);
 
-            Assert.That(expected.Value.ToString(), Is.EqualTo("5"));
-            Assert.That(expected.StatusCode.ToString(), Is.EqualTo("200"));
-            Assert.That(context.User.Count() == userCount - 1);
+            Assert.AreEqual(expected.Value.ToString(), "5");
+            Assert.AreEqual(expected.StatusCode.ToString(), "200");
+            Assert.AreEqual(context.User.Count(), (userCount - 1));
         }
 
         [Test]
@@ -269,8 +269,8 @@ namespace DevInSales.Tests
 
             var expected = (result as ObjectResult);
 
-            Assert.That(expected.Value.ToString(), Is.EqualTo("O Id de Usuário de número 0 não foi encontrado."));
-            Assert.That(expected.StatusCode.ToString(), Is.EqualTo("404"));
+            Assert.AreEqual(expected.Value.ToString(), "O Id de Usuário de número 0 não foi encontrado.");
+            Assert.AreEqual(expected.StatusCode.ToString(), "404");
         }
     }
 }
