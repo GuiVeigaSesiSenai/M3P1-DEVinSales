@@ -19,7 +19,7 @@ namespace DevInSales.Tests
         public ProductControllerTest()
         {
             _sqlContext = new DbContextOptionsBuilder<SqlContext>()
-                .UseInMemoryDatabase("UserControllerTest")
+                .UseInMemoryDatabase("ProductControllerTest")
                 .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
 
